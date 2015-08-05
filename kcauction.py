@@ -18,6 +18,7 @@ with open('DailyRecord01-03.txt', 'r') as records:
 # create a new sublist each time a new "K2014" is read, add the K2014 number, the price, and th 00-000 number to the sublist.
 
   records = []
+  extra_characters = ['\"', '\'', '(', ')', '*', '.', '=', ' ']
   zero_characters = ['0', 'O', 'Q', 'o', 'P']
   possible_errors = []
   possible_errors_with_dashes = []
@@ -62,7 +63,16 @@ with open('DailyRecord01-03.txt', 'r') as records:
             if m == True:
               corrected_line += "0"
             else:
-              corrected_line += letter
+              for character in extra_characters:
+                n = False
+                if letter == character:
+                  n = True
+                  break
+              if n == True:
+                corrected_line += ""
+              else:
+                corrected_line += letter
+
           records[i].append(corrected_line)
 
 with open('properties.csv', 'wb') as properties:
