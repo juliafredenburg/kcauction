@@ -37,7 +37,7 @@ with open('DailyRecord01-03.txt', 'r') as records:
 
   i = -1
   for line in no_blank_lines:
-    if 'K2014' in line:
+    if 'K2' in line:
       price_start = line.find('$')
       k_end = price_start - 1
       records.append([line[0:k_end]])
