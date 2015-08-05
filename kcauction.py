@@ -37,7 +37,13 @@ with open('DailyRecord01-03.txt', 'r') as records:
 
   i = -1
   for line in no_blank_lines:
-    if 'K2' in line:
+    if 'K20' in line:
+      price_start = line.find('$')
+      k_end = price_start - 1
+      records.append([line[0:k_end]])
+      i += 1
+      records[i].append(line[price_start:len(line)])
+    elif '$' in line:
       price_start = line.find('$')
       k_end = price_start - 1
       records.append([line[0:k_end]])
@@ -46,7 +52,18 @@ with open('DailyRecord01-03.txt', 'r') as records:
     else:
       for error in possible_errors:
         if error in line:
-          records[i].append(line)
+          corrected_line = ''
+          for letter in line:
+            m = False
+            for character in zero_characters:
+              if letter == character:
+                m = True
+                break
+            if m == True:
+              corrected_line += "0"
+            else:
+              corrected_line += letter
+          records[i].append(corrected_line)
 
 with open('properties.csv', 'wb') as properties:
   writer = csv.writer(properties)
