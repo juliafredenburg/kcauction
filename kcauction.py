@@ -35,7 +35,7 @@ with open('DailyRecord.txt', 'r') as records:
         possible_errors[j] += '-'
     j += 1
 
-# Find K2014 numbers
+# Find K2014 numbers and separate the prices from them, then add to the count so the next K number starts on a new line.
 
   i = -1
   for line in no_blank_lines:
@@ -46,7 +46,7 @@ with open('DailyRecord.txt', 'r') as records:
       i += 1
       records[i].append(line[price_start:len(line)])
 
-# Find prices
+# If no K2014, but yes $, add everything before the $ as the K number.
 
     elif '$' in line:
       price_start = line.find('$')
