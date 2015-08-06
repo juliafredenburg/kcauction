@@ -3,7 +3,7 @@ import itertools
 
 # read copy and pasted lines from pdf into a list
 
-with open('DailyRecord01-03.txt', 'r') as records:
+with open('DailyRecord.txt', 'r') as records:
   lines = []
   for line in records:
     lines.append(line)
