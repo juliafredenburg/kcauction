@@ -35,6 +35,7 @@ with open('DailyRecord01-03.txt', 'r') as records:
         possible_errors[j] += '-'
     j += 1
 
+# Find K2014 numbers
 
   i = -1
   for line in no_blank_lines:
@@ -44,12 +45,18 @@ with open('DailyRecord01-03.txt', 'r') as records:
       records.append([line[0:k_end]])
       i += 1
       records[i].append(line[price_start:len(line)])
+
+# Find prices
+
     elif '$' in line:
       price_start = line.find('$')
       k_end = price_start - 1
       records.append([line[0:k_end]])
       i += 1
       records[i].append(line[price_start:len(line)])
+
+# Find 0-00-000 numbers, including numbers scanned incorrectly.
+
     else:
       for error in possible_errors:
         if error in line:
